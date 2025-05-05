@@ -32,7 +32,7 @@ print("Finished parsing!")
 
 #Sort the color list 
 sorted_items = sorted(colorList.items(), key=lambda kv: (kv[1], kv[0])) #type list
-final_list:list[tuple] = sorted_items[-5:] #the top 5 colors in the album art
+final_list:list[tuple] = sorted_items[-3:] #the top 3 colors in the album art
 my_colors = [x[0] for x in final_list] #all the actual colors, first element in the list
 print(my_colors)
 #TODO: Customize # of exported colors with GUI

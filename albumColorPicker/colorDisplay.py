@@ -15,7 +15,7 @@ def displayImage(albumArt, color_list):
 
     #place text
     background = cv.putText(background, 'Album Art', (100, 100), cv.FONT_HERSHEY_COMPLEX, 3, (0, 0, 0), 3, cv.LINE_AA)
-    background = cv.putText(background, 'Colors', (100, 750), cv.FONT_HERSHEY_COMPLEX, 3, (0, 0, 0), 3, cv.LINE_AA)
+    background = cv.putText(background, 'Colors', (100, 675), cv.FONT_HERSHEY_COMPLEX, 3, (0, 0, 0), 3, cv.LINE_AA)
 
     #get color swatches
     swatch_data = cv.imread(os.path.dirname(os.path.abspath(__file__)) + '\\swatch.png', cv.IMREAD_UNCHANGED)
@@ -23,32 +23,21 @@ def displayImage(albumArt, color_list):
     swatch_data = cv.resize(swatch_data, (200, 200))
     swatch = cv.resize(swatch, (200, 200))
     
-
-    # swatch_y = 650
-    # swatch_x = 150
-    # for y in range(200):
-    #     for x in range(200):
-    #         overlay_color = swatch[y, x, :3] #this selects the r, g, and b [:3 selects the first three elements in the color information]
-    #         overlay_alpha = swatch[y, x, 3] #this selects the alpha channel [alpha info is stored in channel three]
-
-    #         #get color from background image
-    #         background_color = background[swatch_y + y, swatch_x + x]
-    #         composite_color = background_color * (1 - overlay_alpha) + overlay_color * overlay_alpha
-
-    #         background[swatch_y + y, swatch_x + x] = composite_color
     
-
-    #new approach, let's just make all pixels that have an empty alpha into white!
-
-    swatch_y = 750
+    #Display all color swatches to users!
+    swatch_y = 700
     swatch_x = 100
-    for y in range(200):
-        for x in range(200):
-            if swatch_data[y, x, 3] == 0:
-                #swatch[y, x, :3] = (255, 255, 255)
-                swatch[y, x, :3] = background[swatch_y + y, swatch_x + x]
 
-    background[swatch_y: swatch_y + swatch.shape[0], swatch_x : swatch_x + swatch.shape[1]] = swatch
+    for color in color_list:
+        for y in range(200):
+            for x in range(200):
+                if swatch_data[y, x, 3] == 0:
+                    #swatch[y, x, :3] = (255, 255, 255)
+                    swatch[y, x, :3] = background[swatch_y + y, swatch_x + x]
+                else:
+                    swatch[y, x, :3] = color
+        background[swatch_y: swatch_y + swatch.shape[0], swatch_x : swatch_x + swatch.shape[1]] = swatch 
+        swatch_x += 250
 
 
     #display to user
