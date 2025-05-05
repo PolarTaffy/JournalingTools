@@ -1,7 +1,6 @@
 import cv2 as cv
-from glob import glob
 import os
-
+from colorDisplay import displayImage # type: ignore
 
 #Load Image
 image_dir = os.path.dirname(os.path.abspath(__file__))
@@ -39,11 +38,23 @@ print(my_colors)
 #TODO: Customize # of exported colors with GUI
 
 
+displayImage(image, my_colors)
 
-#TODO: Visibly display most popular colors on screen preview
-#displayColors(final_list[0])
 
-#TODO: Export colors as png
+# #TODO: Visibly display most popular colors on screen preview
+# cv.namedWindow("Colors", cv.WINDOW_AUTOSIZE)
+# outPath = image_dir + '\\template.png'
+# outImg = cv.imread(outPath) 
+
+# #put album art on outimg
+
+# #
+# cv.imshow('Colors', outImg)
+# cv.waitKey(0) 
+
+# cv.destroyAllWindows()
+
+# #TODO: Export colors as png
 
 
 
