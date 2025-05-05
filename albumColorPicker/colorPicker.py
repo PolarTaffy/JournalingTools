@@ -4,7 +4,7 @@ from colorDisplay import displayImage
 
 #Load Image
 image_dir = os.path.dirname(os.path.abspath(__file__))
-imgPath = image_dir + '\\image.jpg'
+imgPath = image_dir + '\\albumArt\image.jpg'
 image = cv.imread(imgPath) # Is a non-RGB image a concern?
 
 if image is None:
