@@ -12,6 +12,5 @@ py colorPicker.py
 ```
 
 ## Upcoming Features:
-* File Selector
 * Custom Swatch Sheet Dimensions
 * Exporting Swatch Sheet

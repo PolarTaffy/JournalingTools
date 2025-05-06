@@ -1,10 +1,26 @@
 import cv2 as cv
 import os
 from colorDisplay import displayImage
+import tkinter as tk
+from tkinter import filedialog
 
-#Load Image
-image_dir = os.path.dirname(os.path.abspath(__file__))
-imgPath = image_dir + '\\albumArt\image.jpg'
+root = tk.Tk()
+root.withdraw()
+
+imgPath = filedialog.askopenfilename(
+    filetypes=(
+        ("Portable Network Graphics", "*.png"),
+        ("JPEG Files", ("*.jpg", "*.jpeg", "*.jpe")),
+        ("Windows Bitmaps", "*.bmp*"),
+        ("WebP", "*.webp*")
+    ))
+
+print("Image: " + imgPath)
+
+#Default Image
+if not imgPath:
+    image_dir = os.path.dirname(os.path.abspath(__file__))
+    imgPath = image_dir + '\\albumArt\image.jpg'
 image = cv.imread(imgPath) # Is a non-RGB image a concern?
 
 if image is None:
